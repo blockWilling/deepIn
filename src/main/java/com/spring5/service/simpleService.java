@@ -1,8 +1,12 @@
 package com.spring5.service;
 
+import com.java8.NewDate;
+import com.java8.interImpl;
+import com.java8.interImpl2;
 import com.spring5.anno.MyComponent;
 import com.spring5.servlet.filter.simpleFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,6 +17,11 @@ import org.springframework.stereotype.Service;
 public class simpleService {
     @Autowired
     simpleFilter simplefilter;
+    @Bean
+    public static String liteBean(NewDate newDate){
+        return "liteBean"+newDate;
+    }
+
     public void say1(){
         System.out.println("say1");
     }

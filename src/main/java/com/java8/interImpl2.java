@@ -11,7 +11,9 @@ public  class interImpl2 implements inter,inter2 {
     public interImpl2() {
         System.out.println();
     }
-
+    public interImpl2(interImpl inter) {
+        System.out.println("com.java8.interImpl2.interImpl2(com.java8.interImpl)");
+    }
     /**
      * 实现两个接口，存在重名default方法，那么这时候子类就必须实现这个default方法
      */
