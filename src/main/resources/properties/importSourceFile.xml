@@ -28,6 +28,12 @@
         <replaced-method replacer="lamda" name="sw1"></replaced-method>
     </bean>
     <bean id="lamda" class="com.java8.lamda" scope="prototype"></bean>
-<bean id="simpleService" class="com.spring5.service.simpleService" lazy-init="true" autowire="byName" depends-on="xmlBean" scope="request"/>
+    <!--scope="request"-->
+<bean id="simpleService" class="com.spring5.service.simpleService" lazy-init="true" autowire="byName" depends-on="xmlBean"
+
+    >
+<property name="sysUserName" value="#{systemProperties['user.region']}"></property>
+</bean>
+
     <bean id="SubSimpleService" class="com.spring5.service.SubSimpleService" parent="simpleService"/>
 </beans>

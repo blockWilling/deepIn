@@ -6,13 +6,12 @@ import org.springframework.stereotype.Component;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.lang.annotation.Annotation;
 
 /**
  * 为字段定义的{@link ConstraintValidator}
  */
 @Component
-public class MyConstraintValidator implements ConstraintValidator<MyConstraint,String> {
+public class PersonConstraintValidator implements ConstraintValidator<MyConstraint,Person> {
 
     @Override
     public void initialize(MyConstraint constraintAnnotation) {
@@ -20,7 +19,7 @@ public class MyConstraintValidator implements ConstraintValidator<MyConstraint,S
     }
 
     @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
-        return value!=null&&value.length()<4;
+    public boolean isValid(Person value, ConstraintValidatorContext context) {
+        return value.getName()!=null&&value.getName().equals("root");
     }
 }

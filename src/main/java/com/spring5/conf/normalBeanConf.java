@@ -20,7 +20,9 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.web.format.WebConversionService;
 import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.support.BeanDefinitionDsl;
@@ -32,6 +34,7 @@ import org.springframework.core.convert.converter.ConverterRegistry;
 import org.springframework.core.convert.support.DefaultConversionService;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 import sun.nio.cs.StreamDecoder;
@@ -128,18 +131,7 @@ public interImpl bean1(){
     return  resourceBundleMessageSource;
 }
 @Bean
-    public ConversionServiceFactoryBean conversionService(){
-    ConversionServiceFactoryBean defaultConversionService = new ConversionServiceFactoryBean();
-    HashSet<Object> objects = new HashSet<>();
-    objects.add(new Converter<String, Date>() {
-        @Nullable
-        @Override
-        public Date convert(String source) {
-
-            return new Date();
-        }
-    });
-    defaultConversionService.setConverters(objects);
-    return defaultConversionService;
+    public MethodValidationPostProcessor methodValidationPostProcessor(){
+        return new MethodValidationPostProcessor();
 }
 }

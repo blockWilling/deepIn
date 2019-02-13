@@ -12,7 +12,7 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 /**
- * Created by 康金 on 2019/2/12.
+ * 为类定义的{@link Validator},一般不如此使用，可以使用{@link }代替
  */
 @Component
 public class PersonValidator implements Validator,ApplicationContextAware {

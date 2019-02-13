@@ -3,8 +3,10 @@ package com.spring5.controller;
 import com.java8.NewDate;
 import com.java8.*;
 import com.others.importConf;
+import com.spring5.aop.ProgrammaticAspectJ;
 import com.spring5.entity.Person;
 import com.spring5.event.myEvent;
+import com.spring5.service.StrongService;
 import com.spring5.service.simpleService;
 import com.spring5.servlet.filter.simpleFilter;
 import com.spring5.validation.PersonValidator;
@@ -12,6 +14,7 @@ import org.apache.catalina.session.StandardSession;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.web.format.WebConversionService;
 import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.context.*;
@@ -47,7 +50,7 @@ import java.util.Set;
 @Import({importConf.class})
 @ImportResource({"classpath:**/importSourceFile.xml"})
 @RequestMapping("/")
-@RequestScope
+//@RequestScope
 //@SessionScope
 //@ApplicationScope
 public class simpleTest implements ApplicationContextAware,ApplicationEventPublisherAware,ApplicationListener<myEvent> {
@@ -66,6 +69,8 @@ public class simpleTest implements ApplicationContextAware,ApplicationEventPubli
 
     @Autowired
     simpleFilter simplefilter;
+    @Value("#{ T(java.lang.Math).random() * 100.0 }")
+    private String sysUsername;
     /**
      * 在importSourceFile.xml中为其中设置的stream的bean设置了primary=true，所以不会报错,
      *      可以使用{@link org.springframework.context.annotation.Primary}与{@link org.springframework.context.annotation.Bean}一起使用去代替
@@ -85,13 +90,13 @@ public class simpleTest implements ApplicationContextAware,ApplicationEventPubli
      */
     int i=0;
     @GetMapping("hello")
-    public String see(HttpServletRequest a,Person p, String in, Session session){
+    public String see(HttpServletRequest a,@Valid  Person p, String in, Session session){
 //        applicationContext.getBean("newDate1");
 //        applicationContext.getBean("simpleFilter");
         Person person = new Person();
         person.setAge(1);
-        //通过@Autowired注入的validator，去手动 检验对象
-        Set<ConstraintViolation<Person>> validate = validator.validate(person);
+        //通过@Autowired注入的validator，去手动检验对象
+        Set<ConstraintViolation<Person>> validate = validator.validate(p);
         System.out.println(validate);
         personValidator.validate( person,new BeanPropertyBindingResult(person,"person"));
 
@@ -111,7 +116,12 @@ public class simpleTest implements ApplicationContextAware,ApplicationEventPubli
      * @return
      */
     @GetMapping("getPerson")
-    public String getPerson(@Valid Person person){
+    public String getPerson( Person person){
+        simpleService.validatePerson(person,"");
+        ((StrongService)simpleService).strongSay1();
+        StrongService o = ProgrammaticAspectJ.create((StrongService) simpleService);
+//        simpleService.say1();
+        o.strongSay1();
         return "getPerson";
     }
     @GetMapping("publishEvent")
