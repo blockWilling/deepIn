@@ -90,7 +90,7 @@ public class simpleTest implements ApplicationContextAware,ApplicationEventPubli
      */
     int i=0;
     @GetMapping("hello")
-    public String see(HttpServletRequest a,@Valid  Person p, String in, Session session){
+    public String see(HttpServletRequest a, Person p, String in, Session session){
 //        applicationContext.getBean("newDate1");
 //        applicationContext.getBean("simpleFilter");
         Person person = new Person();

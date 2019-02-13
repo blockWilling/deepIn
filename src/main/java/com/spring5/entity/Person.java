@@ -17,7 +17,7 @@ public class Person {
     @Autowired
     StrongService strongService;
 @NotNull
-@MyConstraint
+//@MyConstraint
     private String name;
 @Min(18)
     private int age;
