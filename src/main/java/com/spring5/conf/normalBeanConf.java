@@ -36,6 +36,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.HttpRequestHandlerServlet;
 import org.springframework.web.servlet.DispatcherServlet;
 import sun.nio.cs.StreamDecoder;
 
@@ -71,7 +72,7 @@ public class normalBeanConf  {
         return new NewDate();
     }
 
-    @Bean
+/*    @Bean
     public testFrameworkServletRegistrationBean testFrameworkServletRegistrationBean() {
 //        Tomcat.addServlet("simpleServlet","com.spring5.servlet.SimpleServlet");
         return new testFrameworkServletRegistrationBean(new SimpleServlet(),2);
@@ -81,7 +82,7 @@ public class normalBeanConf  {
     public testFilterRegistrationBean testFilterRegistrationBean() {
 //        Tomcat.addServlet("simpleServlet","com.spring5.servlet.SimpleServlet");
         return new testFilterRegistrationBean(new simpleFilter(),new ServletRegistrationBean<?>[]{});
-    }
+    }*/
     @Component
     @DependsOn("simpleTest")
    class innerConf{
@@ -90,14 +91,11 @@ public class normalBeanConf  {
        }
    }
 
-    /**
-     *
-     */
-        @Bean
+/*        @Bean
         @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public  simpleFilter simpleFilter(){
             return  new simpleFilter();
-        }
+        }*/
 
 //        @Bean
 //        @Qualifier()
@@ -134,4 +132,6 @@ public interImpl bean1(){
     public MethodValidationPostProcessor methodValidationPostProcessor(){
         return new MethodValidationPostProcessor();
 }
+
+
 }

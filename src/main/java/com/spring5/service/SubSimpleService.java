@@ -1,7 +1,6 @@
 package com.spring5.service;
 
 import com.spring5.servlet.filter.simpleFilter;
-import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -11,9 +10,9 @@ import javax.inject.Named;
  */
 //@Service
 @Named
-public class SubSimpleService extends simpleService {
-    @Inject
-    simpleFilter simplefilter;
+public class SubSimpleService extends SimpleService {
+//    @Inject
+//    simpleFilter simplefilter;
 
     @Override
     public void say1() {

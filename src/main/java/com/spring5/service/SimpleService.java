@@ -9,6 +9,7 @@ import com.spring5.servlet.filter.simpleFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
@@ -20,20 +21,20 @@ import javax.validation.constraints.NotNull;
  * {@link Validated}+{@link MethodValidationPostProcessor}去给所有方法加上入参bean校验
  */
 @Validated
-//@Service()
+@Service()
     @MyComponent("MyComponent-simpleService")
-@Transactional
-public class simpleService {
+@Transactional(propagation = Propagation.NESTED,rollbackFor = {ClassCastException.class})
+public class SimpleService {
     private String sysUserName;
-    @Autowired
-    simpleFilter simplefilter;
     @Bean
     public static String liteBean(NewDate newDate){
         return "liteBean"+newDate;
     }
 
     public void say1(){
+
         System.out.println("say1");
+        StrongService integer = (StrongService) this;
     }
 
     public void  validatePerson(Person person,  String nb){
@@ -48,11 +49,4 @@ public class simpleService {
         this.sysUserName = sysUserName;
     }
 
-    public simpleFilter getSimplefilter() {
-        return simplefilter;
-    }
-
-    public void setSimplefilter(simpleFilter simplefilter) {
-        this.simplefilter = simplefilter;
-    }
 }

@@ -5,4 +5,6 @@ package com.spring5.service;
  */
 public interface StrongService {
     void strongSay1();
+
+    Object retNull();
 }
