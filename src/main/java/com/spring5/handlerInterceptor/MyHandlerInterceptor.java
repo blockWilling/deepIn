@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by 康金 on 2019/2/20.
+ * Created by blockWilling on 2019/2/20.
  */
 public class MyHandlerInterceptor implements HandlerInterceptor {
     @Override

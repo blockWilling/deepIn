@@ -31,13 +31,14 @@ import org.springframework.web.servlet.mvc.LastModified;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
 import javax.validation.Validator;
 import java.util.Set;
 
 /**
- * Created by 康金 on 2019/1/24.
+ * Created by blockWilling on 2019/1/24.
  */
 @RestController
 
@@ -97,7 +98,7 @@ public class simpleTest implements ApplicationContextAware, ApplicationEventPubl
      * @return
      */
     @GetMapping("/hello")
-    public Person see(HttpServletRequest a, @ModelAttribute Person p, String in, Session session) {
+    public Person see(HttpServletRequest a, @ModelAttribute Person p, String in, HttpSession session) {
 //        applicationContext.getBean("newDate1");
 //        applicationContext.getBean("simpleFilter");
         Person person = new Person();

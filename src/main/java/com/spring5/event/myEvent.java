@@ -3,7 +3,7 @@ package com.spring5.event;
 import org.springframework.context.ApplicationEvent;
 
 /**
- * Created by 康金 on 2019/1/24.
+ * Created by blockWilling on 2019/1/24.
  */
 public class myEvent extends ApplicationEvent {
     /**

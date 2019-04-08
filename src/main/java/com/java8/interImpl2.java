@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by 康金 on 2019/1/23.
+ * Created by blockWilling on 2019/1/23.
  */
 @Service
 public  class interImpl2 implements inter,inter2 {

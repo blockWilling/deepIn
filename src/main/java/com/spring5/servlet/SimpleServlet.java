@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by 康金 on 2019/1/27.
+ * Created by blockWilling on 2019/1/27.
  */
 @Component
 @WebServlet(loadOnStartup = 2,urlPatterns = {"/simple"},initParams = {

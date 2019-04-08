@@ -5,7 +5,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by 康金 on 2019/2/13.
+ * Created by blockWilling on 2019/2/13.
  */
 @Service
 public class StrongServiceImpl implements StrongService {

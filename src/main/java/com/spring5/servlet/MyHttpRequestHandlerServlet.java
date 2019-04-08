@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by 康金 on 2019/2/20.
+ * Created by blockWilling on 2019/2/20.
  */
 @Component
 public class MyHttpRequestHandlerServlet extends HttpRequestHandlerServlet {

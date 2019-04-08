@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
 
 /**
- * Created by 康金 on 2019/1/23.
+ * Created by blockWilling on 2019/1/23.
  */
 @Service("interImplOnly")
 @Scope(value = SCOPE_PROTOTYPE)

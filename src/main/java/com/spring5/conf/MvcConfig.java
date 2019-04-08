@@ -13,6 +13,7 @@ import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.format.Formatter;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.lang.Nullable;
 import org.springframework.validation.Validator;
@@ -139,16 +140,34 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
 
-//        registry.addMapping("/jsp/**")
-//                .allowedOrigins("http://domain2.com")
-//                .allowedMethods("PUT", "DELETE")
-//                .allowedHeaders("header1", "header2", "header3")
-//                .exposedHeaders("header1", "header2")
-//                .allowCredentials(true).maxAge(3600);
+        registry.addMapping("/jsp/**")
+                .allowedOrigins("http://domain2.com")
+                .allowedMethods("PUT", "DELETE")
+                .allowedHeaders("header1", "header2", "header3")
+                .exposedHeaders("header1", "header2")
+                .allowCredentials(true).maxAge(3600);
 
         // Add more mappings...
     }
 
+    /**
+     * 根据http://localhost:9090/hello.zz中的文件扩展名，即“.zz”匹配 {@link ContentNegotiationConfigurer#mediaTypes}
+     * 在 {@link WebMvcConfigurationSupport#getDefaultMediaTypes()}中定义了默认的mediaType匹配扩展名
+     * @param configurer
+     */
+    @Override
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+        configurer.mediaType("zz", MediaType.TEXT_MARKDOWN);
+    }
+
+    /**
+     * 在 {@link DispatcherServlet#handlerMappings}添加一个 {@link HandlerMapping}
+     * @param registry
+     */
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("home");
+    }
     @Nullable
     @Override
     public Validator getValidator() {

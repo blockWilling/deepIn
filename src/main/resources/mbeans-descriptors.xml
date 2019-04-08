@@ -1,0 +1,9 @@
+<mbeans-descriptors>
+<mbean         name="111"
+               className="org.apache.catalina.mbeans.ConnectorMBean"
+               description="Implementation of a Coyote connector"
+               domain="Catalina"
+               group="Connector"
+               type="org.apache.catalina.connector.Connector">
+</mbean>
+</mbeans-descriptors>

@@ -1,7 +1,7 @@
 package com.java8;
 
 /**
- * Created by 康金 on 2019/1/22.
+ * Created by blockWilling on 2019/1/22.
  */
 
 public interface inter {

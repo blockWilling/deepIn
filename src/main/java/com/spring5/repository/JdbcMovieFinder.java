@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 
 /**
- * Created by 康金 on 2019/2/18.
+ * Created by blockWilling on 2019/2/18.
  */
 @Repository
 public class JdbcMovieFinder  {

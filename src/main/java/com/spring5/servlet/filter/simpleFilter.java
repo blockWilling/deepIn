@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by 康金 on 2019/1/29.
+ * Created by blockWilling on 2019/1/29.
  */
 //@Component
 @WebFilter(urlPatterns = {"/simp"},initParams = {

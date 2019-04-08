@@ -8,7 +8,7 @@ import java.util.Comparator;
 import java.util.function.*;
 
 /**
- * Created by 康金 on 2019/1/22.
+ * Created by blockWilling on 2019/1/22.
  */
 public class lamda implements MethodReplacer{
     public void sw1(){
