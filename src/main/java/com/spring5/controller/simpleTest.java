@@ -4,6 +4,7 @@ import com.java8.NewDate;
 import com.java8.*;
 import com.others.importConf;
 import com.spring5.aop.ProgrammaticAspectJ;
+import com.spring5.conf.MyConfig;
 import com.spring5.entity.Person;
 import com.spring5.event.myEvent;
 import com.spring5.service.StrongService;
@@ -16,7 +17,12 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.DefaultApplicationArguments;
+import org.springframework.boot.actuate.autoconfigure.elasticsearch.ElasticsearchHealthIndicatorProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.server.Session;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.*;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
@@ -48,10 +54,16 @@ import java.util.Set;
 //@RequestScope
 //@SessionScope
 //@ApplicationScope
-public class simpleTest implements ApplicationContextAware, ApplicationEventPublisherAware, ApplicationListener<myEvent>,LastModified {
+@RefreshScope
+@EnableConfigurationProperties(MyConfig.class)  //用于注册有@ConfigurationProperties的bean,也可以使用传统的@Bean方式
+public class simpleTest implements ApplicationContextAware, ApplicationEventPublisherAware, ApplicationListener<myEvent>, LastModified {
     private ApplicationContext applicationContext;
     @Autowired
     private Validator validator;
+    @Value("${random.int}")
+    private int rann;
+    @Autowired
+    private  MyConfig properties;
     @Autowired
     Environment env;
     @Autowired
@@ -67,6 +79,11 @@ public class simpleTest implements ApplicationContextAware, ApplicationEventPubl
     @Autowired
     @Qualifier("lamda")
     lamda lamda;
+    /**
+     * 从spring cloud config server获取配置value
+     */
+    @Value("${name}")
+    private String myName;
 
     @Value("#{ T(java.lang.Math).random() * 100.0 }")
     private String sysUsername;
@@ -83,6 +100,11 @@ public class simpleTest implements ApplicationContextAware, ApplicationEventPubl
     @Autowired
     private PersonValidator personValidator;
     /**
+     * 获取main方法的args入参，spring默认注入了{@link DefaultApplicationArguments}
+     */
+    @Autowired
+    ApplicationArguments applicationArguments;
+    /**
      * 如果加上了{@link RequestScope},那么成员变量只在一个请求内保留
      * 如果加上了{@link SessionScope},那么交给session的{@link StandardSession#attributes}管理
      * 如果加上了{@link ApplicationScope},就交给ApplicationContext#attributes去处理
@@ -91,6 +113,7 @@ public class simpleTest implements ApplicationContextAware, ApplicationEventPubl
 
     /**
      * 入参是个pojo对象，默认会加上 {@link ModelAttribute}
+     *
      * @param a
      * @param p
      * @param in
@@ -136,11 +159,13 @@ public class simpleTest implements ApplicationContextAware, ApplicationEventPubl
         byProxyFactoryBean.strongSay1();
         return "getPerson";
     }
+
     @GetMapping("/tx")
     public String tx(Person person) {
         txService.programmaticPlatformTransactionManager();
         return "tx";
- }
+    }
+
     @GetMapping("/publishEvent")
     public String publishEvent() {
         String source = "publishEvent";
@@ -167,7 +192,8 @@ public class simpleTest implements ApplicationContextAware, ApplicationEventPubl
     }
 
     /**
-     *重写 {@link LastModified#getLastModified(javax.servlet.http.HttpServletRequest)}方法
+     * 重写 {@link LastModified#getLastModified(javax.servlet.http.HttpServletRequest)}方法
+     *
      * @param request
      * @return
      */

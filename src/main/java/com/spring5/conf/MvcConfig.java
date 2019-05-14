@@ -6,6 +6,7 @@ import org.apache.catalina.core.ContainerBase;
 import org.apache.catalina.servlets.DefaultServlet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
@@ -35,7 +36,7 @@ import java.util.Locale;
  * {@link EnableWebMvc}加入的 {@link DelegatingWebMvcConfiguration}通过
  *      {@link Autowired}的方式把我们的自定义配置类(从beanFactory中找 {@link WebMvcConfigurer})
  *      加入了 {@link WebMvcConfigurerComposite#delegates}中，用于handlerMapping，handlerAdapter的成员属性注入
- * @link DelegatingWebMvcConfiguration}的父类 {@link WebMvcConfigurationSupport}
+ * {@link DelegatingWebMvcConfiguration}的父类 {@link WebMvcConfigurationSupport}
  *      则提供了handlerMapping，handlerAdapter的 {@link Bean} method注入方法和默认的一些converter等的注入
  *
  */
@@ -94,6 +95,8 @@ public class MvcConfig implements WebMvcConfigurer {
      *      1.在 {@link DispatcherServlet#getHandler(javax.servlet.http.HttpServletRequest)}的时候，才会多出一个 {@link HandlerMapping}
      *      原理参考 {@link WebMvcConfigurationSupport#defaultServletHandlerMapping()}的 {@link Bean}方法
      *      2.在 {@link DefaultServletHttpRequestHandler#setServletContext(javax.servlet.ServletContext)}中设置默认走{@link DefaultServlet}
+     *
+     * 设置{@link WebMvcProperties#staticPathPattern}可以设置resource的路径，默认/**
      * @param configurer
      */
     @Override

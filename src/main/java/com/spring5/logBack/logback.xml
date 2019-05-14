@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="USER_HOME" value="/home/sebastien" />
+    <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator"/>
+    <!--<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">-->
+        <!--&lt;!&ndash; encoders are  by default assigned the type-->
+             <!--ch.qos.logback.classic.encoder.PatternLayoutEncoder &ndash;&gt;-->
+        <!--<encoder>-->
+            <!--<pattern>%d{HH:mm:ss.SSS} [%thread] %mdc{userid:-isaa} %marker %property{JAVA_HOME} %replace(%logger %msg){'\.', '/'} %-5level %logger{36} - %msg%n</pattern>-->
+        <!--</encoder>-->
+    <!--</appender>-->
+
+    <!--<root level="debug">-->
+        <!--<appender-ref ref="STDOUT" />-->
+    <!--</root>-->
+</configuration>

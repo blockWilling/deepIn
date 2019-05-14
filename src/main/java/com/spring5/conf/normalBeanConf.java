@@ -72,17 +72,21 @@ public class normalBeanConf  {
         return new NewDate();
     }
 
-/*    @Bean
-    public testFrameworkServletRegistrationBean testFrameworkServletRegistrationBean() {
-//        Tomcat.addServlet("simpleServlet","com.spring5.servlet.SimpleServlet");
-        return new testFrameworkServletRegistrationBean(new SimpleServlet(),2);
-    }
+//    @Bean
+//    public testFrameworkServletRegistrationBean testFrameworkServletRegistrationBean() {
+////        Tomcat.addServlet("simpleServlet","com.spring5.servlet.SimpleServlet");
+//        return new testFrameworkServletRegistrationBean(new SimpleServlet(),2);
+//    }
 
-        @Bean
-    public testFilterRegistrationBean testFilterRegistrationBean() {
-//        Tomcat.addServlet("simpleServlet","com.spring5.servlet.SimpleServlet");
-        return new testFilterRegistrationBean(new simpleFilter(),new ServletRegistrationBean<?>[]{});
-    }*/
+    /**
+     * 方式一：注册servlet组件
+     * @return
+     */
+//        @Bean
+//    public testFilterRegistrationBean testFilterRegistrationBean() {
+////        Tomcat.addServlet("simpleServlet","com.spring5.servlet.SimpleServlet");
+//        return new testFilterRegistrationBean(new simpleFilter(),new ServletRegistrationBean<?>[]{});
+//    }
     @Component
     @DependsOn("simpleTest")
    class innerConf{

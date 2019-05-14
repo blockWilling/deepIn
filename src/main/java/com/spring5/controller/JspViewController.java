@@ -19,6 +19,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.method.annotation.ModelAttributeMethodProcessor;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.handler.AbstractHandlerMethodMapping;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor;
 import org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler;
@@ -47,6 +48,10 @@ public class JspViewController {
      * 配置了{@link RequestMapping#consumes()}, 会在getHandler的流程中校验，
      * 实际是在 {@link RequestMappingInfo#getMatchingCondition(javax.servlet.http.HttpServletRequest)}中
      * 配置了{@link RequestMapping#params()}和配置了{@link RequestMapping#headers()}同上判断
+     *
+     * 在 {@link RequestMappingInfo#getMatchingCondition(javax.servlet.http.HttpServletRequest)}中
+     * 使用的XXXCondition的RequestMappingInfo的成员变量，都是容器启动的时候放在{@link AbstractHandlerMethodMapping#mappingRegistry}
+     * 中的{@link AbstractHandlerMethodMapping.MappingRegistry#mappingLookup}的key，即{@link RequestMappingInfo}
      * <p>
      * <p>
      * {@link MatrixVariable}的使用
