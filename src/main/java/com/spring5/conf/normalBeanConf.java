@@ -20,6 +20,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.web.format.WebConversionService;
 import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -35,6 +36,7 @@ import org.springframework.core.convert.support.DefaultConversionService;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.HttpRequestHandlerServlet;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -48,7 +50,7 @@ import java.util.HashSet;
  */
 @Configuration
 
-public class normalBeanConf  {
+public class normalBeanConf {
 
     public normalBeanConf() {
 
@@ -59,16 +61,17 @@ public class normalBeanConf  {
 
     /**
      * org.springframework.context.annotation.Bean#value()设置多个相当于xml中配置
-     *       <alias name="myApp-dataSource" alias="subsystemA-dataSource"/>
-            <alias name="myApp-dataSource" alias="subsystemB-dataSource"/>
+     * <alias name="myApp-dataSource" alias="subsystemA-dataSource"/>
+     * <alias name="myApp-dataSource" alias="subsystemB-dataSource"/>
      * 实际上@Bean的方式注入bean就是把需要注入的beanDefinition设置faactoryMethodName和factoryBeanName，类似如下XML方式注入
-     *      <bean id="clientService"
-                 factory-bean="serviceLocator"
-                 factory-method="createClientServiceInstance"/>
+     * <bean id="clientService"
+     * factory-bean="serviceLocator"
+     * factory-method="createClientServiceInstance"/>
+     *
      * @return
      */
-    @Bean(value = {"newDate1","newDate2"},autowire = Autowire.BY_TYPE,initMethod = "initNewDate",destroyMethod ="destroyNewDate" )
-    public  NewDate newDate() {
+    @Bean(value = {"newDate1", "newDate2"}, autowire = Autowire.BY_TYPE, initMethod = "initNewDate", destroyMethod = "destroyNewDate")
+    public NewDate newDate() {
         return new NewDate();
     }
 
@@ -80,6 +83,7 @@ public class normalBeanConf  {
 
     /**
      * 方式一：注册servlet组件
+     *
      * @return
      */
 //        @Bean
@@ -89,11 +93,11 @@ public class normalBeanConf  {
 //    }
     @Component
     @DependsOn("simpleTest")
-   class innerConf{
-       public innerConf() {
-           System.out.println();
-       }
-   }
+    class innerConf {
+        public innerConf() {
+            System.out.println();
+        }
+    }
 
 /*        @Bean
         @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
@@ -101,41 +105,48 @@ public class normalBeanConf  {
             return  new simpleFilter();
         }*/
 
-//        @Bean
+    //        @Bean
 //        @Qualifier()
 //    public simpleTest simpleTest11(){
 //        return  new simpleTest();
 //        }
-@Bean("bbbbean1")
-public interImpl bean1(){
-    return new interImpl();
-}
+    @Bean("bbbbean1")
+    public interImpl bean1() {
+        return new interImpl();
+    }
 
     /**
      * 在{@link ConfigurationClassEnhancer.BeanMethodInterceptor#intercept(java.lang.Object, java.lang.reflect.Method, java.lang.Object[], org.springframework.cglib.proxy.MethodProxy)}
      * 中拦截，根据@Bean method的@Bean Name从beanFactory中去getBean
+     *
      * @return
      */
     @Bean
-    public interImpl2 bean2(){
+    public interImpl2 bean2() {
         interImpl inter = bean1();
         return new interImpl2(inter);
     }
 
     /**
      * messageSource，去classpath的root路径下查找baseName.properties文件
+     *
      * @return
      */
     @Bean
-    public ResourceBundleMessageSource ResourceBundleMessageSource(){
-    ResourceBundleMessageSource resourceBundleMessageSource = new ResourceBundleMessageSource();
-    resourceBundleMessageSource.setBasename("exception");
-    return  resourceBundleMessageSource;
-}
-@Bean
-    public MethodValidationPostProcessor methodValidationPostProcessor(){
+    public ResourceBundleMessageSource ResourceBundleMessageSource() {
+        ResourceBundleMessageSource resourceBundleMessageSource = new ResourceBundleMessageSource();
+        resourceBundleMessageSource.setBasename("exception");
+        return resourceBundleMessageSource;
+    }
+
+    @Bean
+    public MethodValidationPostProcessor methodValidationPostProcessor() {
         return new MethodValidationPostProcessor();
-}
+    }
 
-
+    @LoadBalanced
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 }

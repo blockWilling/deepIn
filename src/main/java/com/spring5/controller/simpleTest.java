@@ -30,6 +30,7 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.annotation.ApplicationScope;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.context.annotation.SessionScope;
@@ -41,6 +42,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
 import javax.validation.Validator;
+import java.util.Collection;
 import java.util.Set;
 
 /**
@@ -82,7 +84,7 @@ public class simpleTest implements ApplicationContextAware, ApplicationEventPubl
     /**
      * 从spring cloud config server获取配置value
      */
-    @Value("${name}")
+//    @Value("${name}")
     private String myName;
 
     @Value("#{ T(java.lang.Math).random() * 100.0 }")
@@ -110,7 +112,18 @@ public class simpleTest implements ApplicationContextAware, ApplicationEventPubl
      * 如果加上了{@link ApplicationScope},就交给ApplicationContext#attributes去处理
      */
     int i = 0;
+    private static final String PROVIDER_SERVER_URL_PREFIX = "http://user-service-provider";
+    /**
+     * 通过 REST API 代理到服务器提供者
+     */
+    @Autowired
+    private RestTemplate restTemplate;
 
+    @GetMapping("/eurekaConsumer")
+    @ResponseBody
+    public String eurekaConsumer() {
+        return restTemplate.getForObject(PROVIDER_SERVER_URL_PREFIX + "/user/save?msg=zzz", String.class);
+    }
     /**
      * 入参是个pojo对象，默认会加上 {@link ModelAttribute}
      *
