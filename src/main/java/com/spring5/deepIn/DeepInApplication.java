@@ -4,6 +4,7 @@ import com.spring5.anno.ExcludeFromComponentScan;
 import com.spring5.beanNameGenerators.MyBeanNameGenerator;
 import com.spring5.conf.CustomRibbonClientConf;
 import com.spring5.event.myEvent;
+import com.spring5.service.PersonService;
 import org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator;
 import org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator;
 import org.springframework.boot.Banner;
@@ -15,8 +16,13 @@ import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.*;
 import org.springframework.context.event.EventListener;
+
+import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 
 /**
  * {@link EnableAspectJAutoProxy}实际{@link Import}了一个{@link AspectJAutoProxyRegistrar implements ImportBeanDefinitionRegistrar}
@@ -31,9 +37,11 @@ import org.springframework.context.event.EventListener;
 @PropertySource("classpath:properties/myPro.sql")
 //@PropertySource("classpath*:com/**/simpleService.java")
 //@EnableDiscoveryClient
-@EnableHystrixDashboard
-@EnableCircuitBreaker
-@RibbonClient(name="myRibbonConf",configuration = CustomRibbonClientConf.class)
+//@EnableHystrixDashboard
+//@EnableCircuitBreaker
+//@RibbonClient(name="myRibbonConf",configuration = CustomRibbonClientConf.class)
+//@EnableZuulProxy
+//@EnableFeignClients(clients = PersonService.class)
 public class DeepInApplication {
 
     //	private DeepInApplication(){}

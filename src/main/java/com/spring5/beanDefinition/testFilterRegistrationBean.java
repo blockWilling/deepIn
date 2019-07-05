@@ -14,16 +14,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 与zuul整合的时候出现jar不匹配，暂时注释
  * Created by blockWilling on 2019/1/28.
  */
-public class testFilterRegistrationBean extends
-        FilterRegistrationBean<simpleFilter> {
+public class testFilterRegistrationBean
+       // extends FilterRegistrationBean<simpleFilter>
+{
 
     public testFilterRegistrationBean(simpleFilter filter, ServletRegistrationBean<?>[] servletRegistrationBeans) {
-        super(filter, servletRegistrationBeans);
-        Map<String, String> map=new HashMap<>();
-        map.put("test","te");
-        setInitParameters(map);
-        setUrlPatterns(Arrays.asList("/filter"));
+//        super(filter, servletRegistrationBeans);
+//        Map<String, String> map=new HashMap<>();
+//        map.put("test","te");
+//        setInitParameters(map);
+//        setUrlPatterns(Arrays.asList("/filter"));
     }
 }

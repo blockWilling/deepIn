@@ -16,6 +16,6 @@ public class MyTomcatWebServerCustomizer
     @Override
     public void customize(TomcatServletWebServerFactory factory) {
         // customize the factory here
-        factory.setPort(9090);
+        factory.setPort(8088);
     }
 }
