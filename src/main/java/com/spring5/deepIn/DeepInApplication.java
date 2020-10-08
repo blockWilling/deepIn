@@ -10,6 +10,7 @@ import org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
@@ -34,7 +35,7 @@ import javax.swing.plaf.synth.SynthOptionPaneUI;
 @SpringBootApplication
 @EnableAspectJAutoProxy
 @ComponentScan(basePackages = {"com.spring5", "com.java8"}, nameGenerator = MyBeanNameGenerator.class,excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION,value = ExcludeFromComponentScan.class ))
-@PropertySource("classpath:properties/myPro.sql")
+//@PropertySource("classpath:properties/myPro.sql")
 //@PropertySource("classpath*:com/**/simpleService.java")
 //@EnableDiscoveryClient
 //@EnableHystrixDashboard
