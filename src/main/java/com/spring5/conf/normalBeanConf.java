@@ -128,7 +128,7 @@ public class normalBeanConf {
     }
 
     /**
-     * messageSource，去classpath的root路径下查找baseName.properties文件
+     * messageSource，去classpath的root路径下查找${baseName}.properties文件
      *
      * @return
      */

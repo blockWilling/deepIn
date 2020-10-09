@@ -35,7 +35,7 @@ import javax.swing.plaf.synth.SynthOptionPaneUI;
 @SpringBootApplication
 @EnableAspectJAutoProxy
 @ComponentScan(basePackages = {"com.spring5", "com.java8"}, nameGenerator = MyBeanNameGenerator.class,excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION,value = ExcludeFromComponentScan.class ))
-//@PropertySource("classpath:properties/myPro.sql")
+@PropertySource("classpath:properties/myPro.sql")
 //@PropertySource("classpath*:com/**/simpleService.java")
 //@EnableDiscoveryClient
 //@EnableHystrixDashboard

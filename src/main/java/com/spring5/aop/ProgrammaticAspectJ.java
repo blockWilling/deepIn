@@ -41,7 +41,7 @@ public class ProgrammaticAspectJ {
         proxyFactoryBean.setTarget(service);
         proxyFactoryBean.setBeanFactory(applicationContext);
         proxyFactoryBean.setSingleton(true);
-//        proxyFactoryBean.setTargetSource();
+        proxyFactoryBean.setTargetSource();
         /**
          * 这里不保存bean实例的原因是： 如果 {@link ProxyFactoryBean#singleton}为false，并且advisor是多例的，那么就无法使用
          */

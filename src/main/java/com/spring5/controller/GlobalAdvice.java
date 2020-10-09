@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 public class GlobalAdvice {
     @InitBinder
     public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor();
        System.out.println("ControllerAdvice");
     }
 

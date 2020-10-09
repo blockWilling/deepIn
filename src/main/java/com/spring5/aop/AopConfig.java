@@ -14,7 +14,7 @@ import org.springframework.util.StopWatch;
 @Aspect
 public class AopConfig {
     /**
-     * 通过 {@link DeclareParents},为 {@link DeclareParents#value()}添加类扩展
+     * 通过 {@link DeclareParents},为 {@link DeclareParents#value()}添加类扩展,即生成的代理类同时是value和defaultImpl的类型
      */
     // “...aop.Person”后面的 “+” 号，表示只要是Person及其子类都可以添加新的方法
    @DeclareParents(value = "com.spring5.service.SimpleService", defaultImpl = StrongServiceImpl.class)
