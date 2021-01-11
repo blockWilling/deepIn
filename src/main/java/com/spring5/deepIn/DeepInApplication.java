@@ -3,6 +3,7 @@ package com.spring5.deepIn;
 import com.spring5.anno.ExcludeFromComponentScan;
 import com.spring5.beanNameGenerators.MyBeanNameGenerator;
 import com.spring5.conf.CustomRibbonClientConf;
+import com.spring5.controller.simpleTest;
 import com.spring5.event.myEvent;
 import com.spring5.service.PersonService;
 import org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator;
@@ -43,8 +44,7 @@ import javax.swing.plaf.synth.SynthOptionPaneUI;
 //@RibbonClient(name="myRibbonConf",configuration = CustomRibbonClientConf.class)
 //@EnableZuulProxy
 //@EnableFeignClients(clients = PersonService.class)
-public class DeepInApplication {
-
+public class DeepInApplication extends simpleTest {
     //	private DeepInApplication(){}
     @Bean
     public static String out() {

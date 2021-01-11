@@ -5,7 +5,7 @@ package com.java8;
  */
 public interface inter2 {
     //default方法
-    default void see(){
+     default void see(){
 System.out.println("com.java8.inter222.see");
     }
     //公共静态方法

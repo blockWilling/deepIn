@@ -59,6 +59,8 @@ import java.util.Set;
 @RefreshScope
 @EnableConfigurationProperties(MyConfig.class)  //用于注册有@ConfigurationProperties的bean,也可以使用传统的@Bean方式
 public class simpleTest implements ApplicationContextAware, ApplicationEventPublisherAware, ApplicationListener<myEvent>, LastModified {
+
+    public simpleTest(){};
     private ApplicationContext applicationContext;
     @Autowired
     private Validator validator;

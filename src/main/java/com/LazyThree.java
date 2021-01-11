@@ -33,5 +33,10 @@ public class LazyThree {
         LazyThree instance = new LazyThree().getInstance();
         LazyThree instance2 = new LazyThree().getInstance();
         System.out.println();
+        LazyThree lazy = LazyHolder.LAZY;
+    }
+
+    private  class LazyHolder4{
+        private  final LazyThree LAZY = new LazyThree();
     }
 }
