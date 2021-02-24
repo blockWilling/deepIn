@@ -388,4 +388,4 @@ public class HotspotSizeof
             throw new RuntimeException(e);
         }
     }
-}  objectFieldOffset
+}

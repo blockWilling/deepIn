@@ -25,6 +25,8 @@ public class JvmDemo extends Inventor {
 //        }
 
         public static void main(String[] args) throws SocketException {
+            byte[] bytes = "Basic Y29jOjEyMzQ1Ng==".getBytes();
+
             Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
             String s = new String("1");
             s.intern();

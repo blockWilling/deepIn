@@ -6,6 +6,9 @@ import com.spring5.conf.CustomRibbonClientConf;
 import com.spring5.controller.simpleTest;
 import com.spring5.event.myEvent;
 import com.spring5.service.PersonService;
+import net.sf.jsqlparser.JSQLParserException;
+import net.sf.jsqlparser.parser.CCJSqlParserUtil;
+import net.sf.jsqlparser.statement.Statement;
 import org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator;
 import org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator;
 import org.springframework.boot.Banner;
@@ -52,12 +55,23 @@ public class DeepInApplication extends simpleTest {
     }
 
     public static void main(String[] args) {
+        Statement parse;
+        try {
+             parse = CCJSqlParserUtil.parse("select * from crm_customer");
+        } catch (JSQLParserException e) {
+            e.printStackTrace();
+        }
+
+        String t="'\"\\";
+        t=t.replaceAll("\\\\","\\\\\\\\");
+        t=t.replaceAll("'","\\\\'");
+        t=t.replaceAll("\"","\\\\\"");
         SpringApplication.run(DeepInApplication.class, args);
 //		new SpringApplicationBuilder()
-//				.sources(DeepInApplication.class,
+//				.sources(DeepInApplication.class,\
 //						normalBeanConf.class)
 //				.run(args);
-//System.out.print("22");
+//System.out.print("22");\
     }
 
     @EventListener(myEvent.class)
