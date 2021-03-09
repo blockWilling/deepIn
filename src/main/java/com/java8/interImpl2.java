@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
  * Created by blockWilling on 2019/1/23.
  */
 @Service
-public  class interImpl2 implements inter,inter2 {
+public  class interImpl2<@anno("") t> implements inter,inter2 {
     public interImpl2() {
         System.out.println();
     }
-    public interImpl2(interImpl inter) {
+    public interImpl2(interImpl inter) throws @anno("") Exception{
         System.out.println("com.java8.interImpl2.interImpl2(com.java8.interImpl)");
     }
     /**
@@ -24,7 +24,7 @@ public  class interImpl2 implements inter,inter2 {
     }
 
     @Override
-    public void abMEthod() {
+    public @anno("") void abMEthod() {
 System.out.println("com.java8.interImpl.abMEthod");
     }
 

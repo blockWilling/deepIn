@@ -1,5 +1,6 @@
 package com.spring5.service;
 
+import com.java8.NewDate;
 import com.spring5.servlet.filter.simpleFilter;
 
 import javax.inject.Inject;
@@ -17,5 +18,9 @@ public class SubSimpleService extends SimpleService {
     @Override
     public void say1() {
         System.out.println("say2");
+    }
+//@Override
+    public static String liteBean(NewDate newDate){
+        return "liteBean"+newDate;
     }
 }

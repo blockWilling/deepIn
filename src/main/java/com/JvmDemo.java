@@ -17,12 +17,12 @@ public class JvmDemo extends Inventor {
         private int value = 1;
         public String s = "abc";
         public final  int f = 12;
-//         static {
-//
-//                i=0;
-////                System.out.println(i);
-//
-//        }
+         static {
+
+                i=0;
+//                System.out.println(i);
+
+        }
 
         public static void main(String[] args) throws SocketException {
             byte[] bytes = "Basic Y29jOjEyMzQ1Ng==".getBytes();
@@ -44,7 +44,7 @@ public class JvmDemo extends Inventor {
 //                Predicate p=(c)->{return false;};
 //                Function f=(a)->{return "";};
         }
-    final static int i=1;
+     static int i=1;
     final static int j=1;
 //        JvmDemo jvmDemo = new JvmDemo();
 //        Object o=new Object();
